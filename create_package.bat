@@ -2,8 +2,14 @@
 setlocal
 
 :: === Config ===
-set NSIS_EXE="C:\Program Files\NSIS\makensis.exe"
+set NSIS_EXE="%ProgramFiles(x86)%\NSIS\makensis.exe"
 set NSIS_SCRIPT=nsis\installer.nsi
+
+if not exist %NSIS_EXE% (
+    echo [E] NSIS failed.
+    pause
+    exit /b 1
+)
 
 if not exist out\bin (
     mkdir out\bin
